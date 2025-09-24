@@ -159,17 +159,21 @@ public class CliManager {
             );
     }
     
-    private static void ioMenu(Scanner scanner) {
+   private static void ioMenu(Scanner scanner) {
         System.out.println("\n-- Import/Export --");
         System.out.println("1. Import Students from CSV");
         System.out.println("2. Export Students to CSV");
+        System.out.println("3. Import Courses from CSV");
+        System.out.println("4. Export Courses to CSV");
         System.out.print("Choose an option: ");
         int choice = getIntInput(scanner);
 
-        if (choice == 1) {
-            ioService.importStudents(studentService, "students.csv");
-        } else if (choice == 2) {
-            ioService.exportStudents(studentService, "students_export.csv");
+        switch (choice) {
+            case 1 -> ioService.importStudents(studentService, "students.csv");
+            case 2 -> ioService.exportStudents(studentService, "students_export.csv");
+            case 3 -> ioService.importCourses(courseService, "courses.csv");
+            case 4 -> ioService.exportCourses(courseService, "courses_export.csv");
+            default -> System.out.println("Invalid option.");
         }
     }
     
